@@ -22,7 +22,7 @@ A simple, dynamic landing page providing quick access to various stock explorati
 * **Vanilla JavaScript (ES6+):** DOM manipulation, event handling, API fetching, theme/background logic.
 * **[particles.js](https://github.com/VincentGarreau/particles.js/):** Library used for the animated particle background effects.
 * **[Financial Modeling Prep (FMP) API](https://site.financialmodelingprep.com/developer/docs/):** Used to fetch data for the live stock ticker.
-  ![image](https://github.com/user-attachments/assets/a98bea1c-23cf-44c0-b520-7d6a0279416b)
+
 
 
 ## 🚀 Usage & Setup
