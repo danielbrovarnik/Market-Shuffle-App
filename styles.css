@@ -1,0 +1,528 @@
+/* Global Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Particles Background Container covers entire viewport */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: transparent;
+    pointer-events: none; /* Allows interaction with elements behind it */
+}
+body {
+    font-family: 'Montserrat', sans-serif; /* Default font */
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.5s ease, color 0.5s ease;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll FOR BODY */
+    padding-bottom: 80px; /* Footer padding */
+}
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+body.dark-mode {
+    background: linear-gradient(135deg, #1e1e1e, #3e3e3e);
+    color: #ddd;
+}
+/* Header: removed blue logo; center the controls */
+header {
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center; /* Center the controls */
+    align-items: center;
+    z-index: 10;
+}
+/* Header Controls - always in a row */
+header > div {
+    display: flex;
+    flex-direction: row; /* Keep controls in a row */
+    align-items: center;
+    justify-content: center; /* Center controls within their container */
+    gap: 10px; /* Space between controls */
+    flex-wrap: wrap; /* Allow wrapping on slightly larger screens if needed */
+}
+/* Toggle theme button remains at 1.5rem and includes a tooltip */
+#theme-toggle {
+    padding: 6px;
+    font-size: 1.5rem; /* Base size for button, SVGs will scale with em */
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit; /* Inherit color for better theme switching */
+    line-height: 1; /* Prevent extra spacing */
+}
+
+/* --- START: SVG Theme Toggle Styles --- */
+#theme-toggle svg {
+    /* Size the SVGs - adjust as needed */
+    width: 1.3em; /* Use em to scale relative to button font-size */
+    height: 1.3em;
+    vertical-align: middle; /* Helps align with text if any */
+    display: block; /* Ensure layout consistency */
+    /* stroke: currentColor; */ /* Stroke is handled per icon if needed */
+    /* fill: currentColor; */ /* Fill is handled per icon if needed */
+    transition: fill 0.3s ease, stroke 0.3s ease; /* Smooth transition */
+}
+
+/* Sun specific */
+#theme-toggle .icon-sun {
+    stroke: currentColor;
+    fill: none; /* Sun is outlined */
+}
+
+/* Moon specific */
+#theme-toggle .icon-moon {
+    fill: currentColor; /* Moon is filled */
+    stroke: none; /* Moon has no stroke usually */
+}
+
+
+/* Default (Light Mode): Show Sun, Hide Moon */
+#theme-toggle .icon-moon {
+    display: none;
+}
+#theme-toggle .icon-sun {
+    display: block; /* Or inline-block if needed */
+}
+
+/* Dark Mode: Hide Sun, Show Moon */
+body.dark-mode #theme-toggle .icon-sun {
+    display: none;
+}
+body.dark-mode #theme-toggle .icon-moon {
+    display: block; /* Or inline-block if needed */
+}
+/* --- END: SVG Theme Toggle Styles --- */
+
+/* Styled dropdown and label */
+.bg-label {
+    font-size: 1rem;
+    color: #0077cc; /* Keep consistent blue */
+    white-space: nowrap; /* Prevent label text wrap */
+}
+body.dark-mode .bg-label {
+    color: #66bfff; /* Lighter blue for dark mode */
+}
+#bg-select {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: #0077cc;
+    color: #fff;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+#bg-select:hover, #bg-select:focus {
+    background: #005fa3;
+}
+
+/* Responsive page title */
+h1 {
+    margin: 20px 0 5px;
+    font-family: 'Bebas Neue', cursive;
+    /* Generally large size, scaling with viewport */
+    font-size: clamp(2.8rem, 13vw, 7rem);
+    color: inherit;
+    z-index: 10;
+    text-align: center;
+    padding: 0 5px; /* Minimal horizontal padding */
+    white-space: nowrap; /* Keep on one line by default */
+    letter-spacing: 1.5px;
+    line-height: 1.1;
+    width: 100%; /* Ensure it takes full width available */
+    overflow: hidden; /* Hide overflow if nowrap forces it */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+/* Tagline styling with slide‑in animation */
+.tagline {
+    text-align: center;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size */
+    font-style: italic;
+    font-weight: bold;
+    margin: 0 0 15px; /* Adjusted top margin */
+    opacity: 0;
+    animation: slideIn 1s forwards;
+    animation-delay: 0.5s; /* Start animation sooner */
+    color: #555;
+    z-index: 5;
+    padding: 0 10px; /* Add padding to prevent edge touching */
+}
+/* Dark mode tagline color */
+body.dark-mode .tagline {
+    color: #bbb; /* Slightly brighter for dark mode */
+}
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- START: Mini Stock Ticker Styles --- */
+.ticker-container {
+    width: 100%;
+    max-width: 600px; /* Control ticker width */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    overflow: hidden; /* Important for scroll effect */
+    margin: 15px 0 20px; /* Space around the ticker */
+    padding: 5px 0;
+    z-index: 5;
+    transition: background-color 0.5s ease;
+    /* Initially hidden by JS, will be shown if data loads */
+}
+body.dark-mode .ticker-container {
+    background-color: rgba(50, 50, 50, 0.8); /* Dark background */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Define the scrolling animation using a CSS variable */
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); } /* Start at 0 */
+    /* Use variable for scroll amount, provide fallback just in case */
+    100% { transform: translateX(var(--scroll-amount, -50%)); }
+}
+
+.ticker-wrap {
+    display: flex;
+    /* Animation properties - duration will be dynamically set by JS */
+    /* Set a default reasonable duration here as fallback */
+    animation: ticker-scroll 60s linear infinite; /* Default duration */
+    white-space: nowrap; /* Keep items in one line */
+    /* Define the CSS variable that JS will set */
+    --scroll-amount: -50%; /* Default value if JS fails */
+}
+.ticker-wrap:hover {
+    animation-play-state: paused; /* Pause on hover */
+}
+
+.ticker-item {
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center; /* Vertically align items */
+    padding: 0 1.5rem; /* Space between items */
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer; /* Indicate clickability */
+    transition: background-color 0.2s ease; /* Subtle hover effect */
+    white-space: nowrap; /* Ensure content within item doesn't wrap */
+}
+.ticker-item:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Slight background on hover */
+}
+body.dark-mode .ticker-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ticker-item .symbol {
+    color: #005fa3; /* Consistent blue */
+    margin-right: 8px; /* Increased spacing */
+}
+body.dark-mode .ticker-item .symbol {
+    color: #66bfff; /* Lighter blue for dark mode */
+}
+.ticker-item .price {
+     margin-right: 5px; /* spacing */
+}
+.ticker-item .change { /* General class for the change span */
+      display: inline-flex; /* Use flex for icon alignment */
+      align-items: center;
+      gap: 2px; /* Space between icon and text */
+}
+.ticker-item .change-up {
+    color: #28a745; /* Green for up */
+}
+.ticker-item .change-down {
+    color: #dc3545; /* Red for down */
+}
+.ticker-item .change-neutral {
+    color: #888; /* Grey for neutral */
+}
+/* --- END: Mini Stock Ticker Styles --- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased gap between cards */
+    width: 90%; /* Slightly wider */
+    max-width: 500px; /* INCREASED MAX-WIDTH for container */
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    z-index: 10;
+    margin-top: 10px; /* Added margin top */
+}
+.card {
+    /* Set relative positioning for inner absolute elements */
+    position: relative;
+    text-decoration: none;
+    background: #fff;
+    padding: 30px; /* INCREASED PADDING */
+    border-radius: 14px; /* Slightly larger radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Slightly stronger shadow */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    text-align: center;
+    color: inherit; /* Inherit color for theme switching */
+    overflow: hidden; /* Ensure icon doesn't overflow on weird scales */
+}
+body.dark-mode .card {
+    background: #444;
+    color: #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Dark mode shadow */
+}
+.card:hover {
+    transform: translateY(-7px) scale(1.03); /* Slightly more lift and scale */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Stronger hover shadow */
+    background: #f9f9f9; /* Subtle background change */
+}
+body.dark-mode .card:hover {
+    background: #505050; /* Dark mode hover background */
+}
+/* TradingView Icon - slightly bigger */
+.tradingview-icon {
+    position: absolute;
+    top: 12px; /* Adjusted position */
+    left: 12px;
+    width: 35px; /* INCREASED SIZE */
+    height: 35px;
+    z-index: 1; /* Behind text */
+    opacity: 0.7; /* Slightly transparent */
+    border-radius: 50%; /* Rounded */
+    transition: opacity 0.3s ease;
+}
+/* Discord Icon - slightly bigger */
+.discord-icon {
+    position: absolute;
+    top: 12px; /* Adjusted position */
+    left: 12px;
+    width: 35px; /* INCREASED SIZE */
+    height: 35px;
+    z-index: 1; /* Behind text */
+    opacity: 0.7; /* Slightly transparent */
+    transition: opacity 0.3s ease;
+}
+/* Increase icon opacity on card hover */
+.card:hover .tradingview-icon,
+.card:hover .discord-icon {
+     opacity: 1;
+}
+
+/* Ensure text appears above the icons */
+.card h2, .card p {
+    position: relative;
+    z-index: 2; /* Above icons */
+}
+.card h2 {
+    margin-bottom: 12px; /* Increased margin */
+    font-size: 1.8rem; /* INCREASED FONT SIZE */
+    color: #0077cc;
+    font-weight: 700; /* Make title bolder */
+}
+body.dark-mode .card h2 {
+    color: #66bfff; /* Lighter blue for dark mode */
+}
+.card p {
+    font-size: 1.1rem; /* INCREASED FONT SIZE */
+    color: #555;
+    line-height: 1.5; /* Increased line height */
+}
+body.dark-mode .card p {
+    color: #ccc;
+}
+.hidden-description {
+    display: none; /* Hidden by default */
+    margin-top: 15px; /* Increased margin */
+    font-size: 1rem; /* INCREASED FONT SIZE */
+    color: #777;
+    font-style: italic;
+}
+body.dark-mode .hidden-description {
+     color: #aaa;
+}
+.card:hover .hidden-description {
+    display: block; /* Show on hover */
+}
+/* Greyed out style for disabled cards */
+.card.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    background: #e0e0e0;
+}
+body.dark-mode .card.disabled {
+    background: #666;
+}
+/* Pulse Animations */
+@keyframes pulse {
+    0% { box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 0 rgba(0,119,204,0.4); }
+    70% { box-shadow: 0 8px 20px rgba(0,0,0,0.2), 0 0 0 18px rgba(0,119,204,0); } /* Adjusted pulse size */
+    100% { box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 0 rgba(0,119,204,0); }
+}
+@keyframes pulse-dark {
+    0% { box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 0 rgba(102,191,255,0.5); }
+    70% { box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 18px rgba(102,191,255,0); } /* Adjusted pulse size */
+    100% { box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 0 rgba(102,191,255,0); }
+}
+/* Apply pulse on hover, but keep existing shadow logic */
+.card:hover {
+    /* Existing hover styles from above */
+    transform: translateY(-7px) scale(1.03);
+    background: #f9f9f9;
+    /* Add pulse animation */
+    animation: pulse 2.5s infinite;
+}
+body.dark-mode .card:hover {
+    /* Existing dark mode hover styles */
+    background: #505050;
+    /* Add dark pulse animation */
+    animation: pulse-dark 2.5s infinite;
+}
+
+/* Quote Slider Styles (now inline within container) */
+#quote-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out text and button */
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.85); /* Slightly less transparent */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* Positioned within the .container flow */
+}
+body.dark-mode #quote-slider {
+    background: rgba(60,60,60,0.85); /* Dark mode background */
+    color: #ddd;
+}
+#quote-text {
+     flex-grow: 1; /* Allow text to take available space */
+     font-size: 0.95rem;
+     font-style: italic;
+     text-align: left;
+}
+#next-quote-button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #0077cc;
+    color: #fff;
+    transition: background 0.3s ease;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+#next-quote-button:hover {
+    background: #005fa3;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 600px) {
+    body {
+      padding-bottom: 20px;
+    }
+    header {
+      padding: 10px 5px; /* Reduce padding slightly */
+    }
+    /* Ensure header controls stay on a single line and center them */
+    header > div {
+      width: 100%; /* Take full width */
+      flex-direction: row; /* Force row */
+      justify-content: center; /* Center items horizontally */
+      flex-wrap: nowrap; /* <<< PREVENT WRAPPING */
+      gap: 5px; /* Reduce gap */
+      overflow-x: auto; /* Allow horizontal scroll if needed */
+      padding: 5px 0; /* Add a little vertical padding */
+    }
+
+    h1 {
+      /* Adjusted clamp for one line on mobile. Less aggressive vw, check min/max */
+      font-size: clamp(2.5rem, 11vw, 4.5rem); /* <<< INCREASED SIZE */
+      white-space: nowrap; /* <<< ENSURE NO WRAP */
+      line-height: 1.2; /* Can be adjusted slightly */
+      margin-top: 15px;
+      margin-bottom: 10px; /* Add slight bottom margin */
+      padding: 0 5px; /* Minimal horizontal padding */
+      overflow: hidden; /* Hide overflow */
+      text-overflow: ellipsis; /* Add ... if it still overflows somehow */
+    }
+
+    .tagline {
+      font-size: clamp(0.8rem, 2.5vw, 1rem); /* Adjusted tagline size slightly */
+      margin-bottom: 15px; /* More space after tagline */
+    }
+     /* Adjust ticker for smaller screens */
+    .ticker-container {
+      max-width: 95%; /* Use more width */
+    }
+    .ticker-item {
+      padding: 0 1rem; /* Less padding between items */
+      font-size: 0.85rem; /* Smaller font */
+    }
+    .ticker-item .symbol {
+       margin-right: 5px; /* Less space */
+    }
+
+    .container {
+      width: 95%; /* Use more width on mobile */
+      max-width: none; /* Remove max-width restriction */
+      gap: 20px; /* Adjust gap */
+    }
+    .card {
+        padding: 25px; /* Slightly reduce padding for mobile compared to new desktop */
+    }
+    .card h2 {
+        font-size: 1.6rem; /* Adjust title size for mobile */
+        margin-bottom: 10px;
+    }
+    .card p {
+        font-size: 1rem; /* Adjust p size for mobile */
+        line-height: 1.4;
+    }
+    .hidden-description {
+        font-size: 0.9rem; /* Adjust hidden desc size */
+        margin-top: 12px;
+    }
+
+    /* Adjust controls for smaller size on mobile */
+    #theme-toggle {
+      font-size: 1.3rem; /* Slightly smaller icon */
+      padding: 4px;
+    }
+    #bg-select, .bg-label {
+      padding: 5px 8px; /* Reduce padding */
+      font-size: 0.85rem; /* Reduce font size */
+      margin: 0; /* Remove margin */
+    }
+
+    /* Adjust quote slider for mobile */
+    #quote-slider {
+      flex-direction: column; /* Stack quote and button */
+      text-align: center; /* Center text */
+      padding: 0.75rem 1rem;
+      gap: 0.5rem; /* Reduce gap */
+    }
+     #quote-text {
+       font-size: 0.9rem; /* Slightly smaller text */
+       text-align: center;
+     }
+     #next-quote-button {
+       width: 100%; /* Make button full width */
+       padding: 10px; /* Make button easier to tap */
+     }
+}
