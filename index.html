@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Stock Explorer's Hub</title>
+
+    <link rel="icon" type="image/png" href="candlestick-icon.png"> <script async src="https://www.googletagmanager.com/gtag/js?id=G-7EY771DZ8F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7EY771DZ8F');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <div>
+            <button id="theme-toggle" aria-label="Toggle Theme" title="Switch Theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <span class="bg-label">Background:</span>
+            <select id="bg-select" aria-label="Select Particle Background">
+                <option value="none" selected>None</option>
+                <option value="candlestick">Candlestick Confetti</option>
+                <option value="particles">Particles</option>
+            </select>
+        </div>
+    </header>
+
+    <h1>Market Shuffle</h1>
+    <p class="tagline">...your last stop for uncovering hidden gems.</p>
+
+    <div class="ticker-container">
+        <div class="ticker-wrap" id="ticker-wrap">
+            <div class="ticker-item" data-symbol="AAPL">
+                <span class="symbol">AAPL</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="GOOGL">
+                <span class="symbol">GOOGL</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="TSLA">
+                <span class="symbol">TSLA</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="AMZN">
+                <span class="symbol">AMZN</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="MSFT">
+                <span class="symbol">MSFT</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="NVDA">
+                <span class="symbol">NVDA</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="SPY">
+                <span class="symbol">SPY</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="AAPL">
+                <span class="symbol">AAPL</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="GOOGL">
+                <span class="symbol">GOOGL</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="TSLA">
+                <span class="symbol">TSLA</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="AMZN">
+                <span class="symbol">AMZN</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="MSFT">
+                <span class="symbol">MSFT</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="NVDA">
+                <span class="symbol">NVDA</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+            <div class="ticker-item" data-symbol="SPY">
+                <span class="symbol">SPY</span>
+                <span class="price">--.--</span>
+                <span class="change">--.--%</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <a href="https://random-snp-500-stock-explorer.netlify.app/" target="_blank" class="card" tabindex="0" aria-label="S&P 500 Stock Explorer">
+            <img
+                src="https://play-lh.googleusercontent.com/OoPpCoMOpPra6k0Qlwhfi14vOmqHfR790C1C7a_sHNqqUUYJhTYy6rjAmrv4eMLQRDbJ=s94-rw" alt="TradingView Icon"
+                class="tradingview-icon"
+            >
+            <h2>S&P 500 Explorer</h2>
+            <p>Discover random stocks from the S&P 500.</p>
+            <p class="hidden-description">Click to instantly access charts for top 500 companies.</p>
+        </a>
+
+        <a href="https://random-mid-cap-stock-explorer.netlify.app/" target="_blank" class="card" tabindex="0" aria-label="Mid Cap Stock Picker">
+            <img
+                src="https://play-lh.googleusercontent.com/OoPpCoMOpPra6k0Qlwhfi14vOmqHfR790C1C7a_sHNqqUUYJhTYy6rjAmrv4eMLQRDbJ=s94-rw" alt="TradingView Icon"
+                class="tradingview-icon"
+            >
+            <h2>Mid Cap Explorer</h2>
+            <p>Explore random stock selections from mid cap companies.</p>
+            <p class="hidden-description">Click to access charts for 1000 diverse mid-cap firms.</p>
+        </a>
+
+        <a href="https://stock-wordle.netlify.app/" class="card" target="_blank" tabindex="0" aria-label="Stock wordle">
+            <h2>Stock Wordle</h2>
+            <p>Test your stock knowledge. Play Stock Wordle now!</p>
+            <p class="hidden-description">Guess the stock symbol in 6 tries. Click to play!</p>
+        </a>
+
+        <div id="quote-slider">
+            <span id="quote-text">"Investing is a marathon, not a sprint."</span>
+            <button id="next-quote-button">Next Quote</button>
+        </div>
+
+        <a href="https://discord.gg/Qcuc8e7VAj" target="_blank" class="card" tabindex="0" aria-label="Discord! Click to join">
+            <img
+                src="https://www.svgrepo.com/show/353655/discord-icon.svg"
+                alt="Discord Icon"
+                class="discord-icon"
+            >
+            <h2>Join Discord!</h2>
+            <p>Connect with our trading community.</p>
+            <p class="hidden-description">Share insights, ask questions, and chat live. Click to join!</p>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
