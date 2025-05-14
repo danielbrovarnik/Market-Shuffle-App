@@ -44,7 +44,6 @@ The live stock ticker requires an API key from Financial Modeling Prep.
 3.  Find the line: `const FMP_API_KEY = "YOUR_ACTUAL_FMP_API_KEY_GOES_HERE";` (or similar).
 4.  Replace `"YOUR_ACTUAL_FMP_API_KEY_GOES_HERE"` with your actual FMP API key.
 
-* **Note:** If deploying publicly (like GitHub Pages), hardcoding API keys directly into client-side JavaScript is generally discouraged for security reasons, especially for sensitive keys. For a simple project like this using a free FMP key, it might be acceptable, but be aware of the potential risks (e.g., key exhaustion if someone copies it). More advanced setups might use backend proxies or build-time environment variables.
 
 ## 🔗 Links
 
