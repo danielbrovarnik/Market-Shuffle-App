@@ -47,7 +47,7 @@ The live stock ticker requires an API key from Financial Modeling Prep.
 
 ## 🔗 Links
 
-* **Live Site:** [Link to your deployed site on GitHub Pages or Netlify, etc.] * S&P 500 Explorer: [https://random-snp-500-stock-explorer.netlify.app/](https://random-snp-500-stock-explorer.netlify.app/)
+* **Live Site:** [https://market-shuffle.netlify.app/] * S&P 500 Explorer: [https://random-snp-500-stock-explorer.netlify.app/](https://random-snp-500-stock-explorer.netlify.app/)
 * Mid Cap Explorer: [https://random-mid-cap-stock-explorer.netlify.app/](https://random-mid-cap-stock-explorer.netlify.app/)
 * Stock Wordle: [https://stock-wordle.netlify.app/](https://stock-wordle.netlify.app/)
 * Discord Community: [https://discord.gg/Qcuc8e7VAj](https://discord.gg/Qcuc8e7VAj)
